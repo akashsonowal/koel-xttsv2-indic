@@ -559,7 +559,7 @@ def expand_numbers_multilingual(text, lang="en"):
             text = re.sub(_currency_re["EUR"], lambda m: _expand_currency(m, lang, "EUR"), text)
         except:
             pass
-        if lang != "tr":
+        if lang not in ["tr", "mr", "ml", "kn", "ta", "te"]:
             text = re.sub(_decimal_number_re, lambda m: _expand_decimal_point(m, lang), text)
         text = re.sub(_ordinal_re[lang], lambda m: _expand_ordinal(m, lang), text)
         text = re.sub(_number_re, lambda m: _expand_number(m, lang), text)
