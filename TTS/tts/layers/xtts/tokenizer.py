@@ -561,8 +561,9 @@ def expand_numbers_multilingual(text, lang="en"):
             pass
         if lang not in ["tr", "mr", "ml", "kn", "ta", "te"]:
             text = re.sub(_decimal_number_re, lambda m: _expand_decimal_point(m, lang), text)
-        text = re.sub(_ordinal_re[lang], lambda m: _expand_ordinal(m, lang), text)
-        text = re.sub(_number_re, lambda m: _expand_number(m, lang), text)
+        if lang in ["en", "hi"]:
+            text = re.sub(_ordinal_re[lang], lambda m: _expand_ordinal(m, lang), text)
+            text = re.sub(_number_re, lambda m: _expand_number(m, lang), text)
     return text
 
 
